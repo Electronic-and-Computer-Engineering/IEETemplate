@@ -1,0 +1,60 @@
+\ifthenelse{\equal{\coloredTitlePage}{true}}
+{
+	\newcommand{\shadowtitle}{\shadowcolor{black}\shadowoffset{1pt}}
+}
+{
+	\newcommand{\shadowtitle}{\shadowoffset{0pt}}
+}
+
+\begin{tikzpicture}[overlay]
+
+\ifthenelse{\equal{\DegProg}{\ECE}}
+{
+	\node (Logo) at (17cm,-0.9) [anchor = east] {\includegraphics[scale = 1.1]{temp_graphics/logo_FHJ_ECE_white.eps}};
+	\newcommand{\ReportDate}{Graz, \today} %Place and the generated date
+}{}
+\ifthenelse{\equal{\DegProg}{\MEC}}
+{
+	\node (Logo) at (17.5cm,-1.2) [anchor = east] {\includegraphics[scale = 1.2]{temp_graphics/logo_FHJ_mec_cmyk.eps}};
+	\newcommand{\ReportDate}{Kapfenberg, \today} %Place and the generated date
+}{}
+\ifthenelse{\equal{\DegProg}{\ECM}}
+{
+	\node (Logo) at (16cm,-1.2) [anchor = east] {\includegraphics[scale = 0.9]{temp_graphics/ecm_logo_eps.eps}};
+	\newcommand{\ReportDate}{Kapfenberg, \today} %Place and the generated date
+}{}
+\ifthenelse{\equal{\DegProg}{\STM}}
+{
+	\node (Logo) at (16cm,-1.2) [anchor = east] {\includegraphics[scale = 1.3]{temp_graphics/logo_FHJ_stm_rgb.eps}};
+	\newcommand{\ReportDate}{Graz, \today} %Place and the generated date
+}{}
+
+
+%% ===== CREATE background ===== %%
+% Background Box
+\ifthenelse{\equal{\coloredTitlePage}{true}}
+{
+	\node (boxOne)  at (6.5 cm,-12.5) [] {\includegraphics[scale = 0.75]{temp_graphics/titleBacking.eps}};
+}
+{
+	\node (boxOne)  at (6.5cm,-12.5) []{};
+}
+\node (ThesisTitle) [color = \tcol, font = \MainTitlesize, align = center] at (6.5,-6){\shadowtitle\shadowtext{\ReportTitle}};%
+
+\node (ThesisType) [color = \tcol, font = \SubTitlesize, align = center, anchor = south] at ($(ThesisTitle.south) + (0,-4em)$){\shadowtitle\shadowtext{\DocTypeText}};
+
+\ifthenelse{\equal{\german}{true}}
+{
+	\node (AuthName) [color = \tcol, font = \Large, align = center, anchor = south] at ($(ThesisType.south) + (0,-9em)$){\shadowtitle\shadowtext{\bf{angefertigt von:}} \\ \shadowtitle\shadowtext{\ReportAuthorOne} \\ \shadowtitle\shadowtext{\ReportAuthorTwo}};
+}
+{
+	\node (AuthName) [color = \tcol, font = \large, align = center, anchor = south] at ($(ThesisType.south) + (0,-6em)$){\shadowtitle\shadowtext{\bf{written by:}} \\ \shadowtitle\shadowtext{\ReportAuthorOne} \\ \shadowtitle\shadowtext{\ReportAuthorTwo}};
+}
+
+\node (Organization) [color = \tcol, font = \LARGE, align = center, anchor = south] at ($(AuthName.south) + (0,-9em)$){\shadowtitle\shadowtext\OrgaText \\ \shadowtitle\shadowtext{FH JOANNEUM -- University of Applied Sciences, Austria}};
+
+\node (ThesisDate) [color = \tcol, font = \Large, align = center, anchor = south] at ($(Organization.south) + (0,-5em)$){\shadowtitle\shadowtext{\bf\ReportDate}};
+
+\node (SpecialNote) [color = \tcol, font = \large, align = center, anchor = south] at ($(ThesisDate.south) + (0,-3em)$){\begin{varwidth}{14cm} \shadowtitle\shadowtext{\SpecialNote} \end{varwidth}};
+
+\end{tikzpicture}	

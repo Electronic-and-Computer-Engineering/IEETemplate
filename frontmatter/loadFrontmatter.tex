@@ -1,0 +1,29 @@
+%%%% Modify your titlepage by configuring "frontmatter/tpThesis.tex" or "frontmatter/tpReport.tex"
+%%% BEGIN FRONTMATTER
+\ifthenelse{\equal{\DocType}{\Thesis}}
+{
+	\input{frontmatter/titlepage}
+	\newpage	
+	\ifthenelse{\equal{\german}{true}}
+	{		
+		\input{frontmatter/ehrenw_Erklaerung}		
+		\ifthenelse{\equal{\DegProg}{\ECE}}
+		{
+			\input{frontmatter/kurzfassung}
+		}{}	
+		\newpage
+		\input{frontmatter/abstract}
+	}
+	{		
+		\input{frontmatter/declaration}
+		\ifthenelse{\equal{\DegProg}{\ECE}}
+		{
+			\input{frontmatter/kurzfassung}
+		}{}	
+		\newpage
+		\input{frontmatter/abstract}
+	}
+}
+{
+}
+%%% END FRONTMATTER

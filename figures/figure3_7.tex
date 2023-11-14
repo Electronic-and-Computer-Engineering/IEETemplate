@@ -1,0 +1,48 @@
+\center
+
+\tikzstyle{arrow} = [thick,->,=>latex]
+\begin{tikzpicture}
+
+%%%%%%%%%% TIME DOMAIN %%%%%%%%%%%%%%%
+\coordinate (B) at (0,0);
+\coordinate (Wtime) at ($(B) + (-0.5,-1.5)$);
+\coordinate (Xtime) at ($(B) + (4,-2.25)$);
+\draw [ultra thick] (B) to ($(B) + (6,-1)$) to ($(B) + (4.25,-3)$) to ($(B) + (4.25,-3) - (6,-1)$) to (B);
+\filldraw [fill = black!10 ,fill opacity=1,draw opacity=1] (B) to ($(B) + (6,-1)$) to ($(B) + (4.25,-3)$) to ($(B) + (4.25,-3) - (6,-1)$) to (B);
+\filldraw [black] (Wtime) circle (2pt);
+\filldraw [black] (Xtime) circle (2pt);
+
+%%%%%%%%%% SPEC DOMAIN %%%%%%%%%%%%%%%
+\coordinate (A) at (0,1.75);
+\filldraw [fill = white,fill opacity=1,draw opacity=1] ($(A) + (6,-1)$) to ($(A) + (4.25,-3)$) to ($(A) + (4.25,-3) - (6,-1)$) to (A);
+\draw [ultra thick] (A) to ($(A) + (6,-1)$) to ($(A) + (4.25,-3)$) to ($(A) + (4.25,-3) - (6,-1)$) to (A);
+\node (domain) at ($(A) + (3.25,-1.7)$) [ellipse, very thin, fill = black!5, draw, minimum width = 3cm, minimum height = 2cm]{};
+
+\coordinate (WSpec) at ($(A) + (0.5,-1)$);
+\coordinate (GW) at ($(A) + (2,-1.2)$);
+\coordinate (XSpec) at ($(A) + (4,-1.6)$);
+\coordinate (GWTwo) at ($(A) + (2.75,-2.12)$);
+
+\filldraw [black] (WSpec) circle (2pt);
+\filldraw [black] (GWTwo) circle (2pt) node[black, yshift=0.25cm, xshift=0.125cm]{$\widetilde{X}$};
+\filldraw [black] (XSpec) circle (2pt);
+
+\node (domain) at ($(A) + (3.25,-1)$) {$\mathcal{W}$};
+
+\draw [ultra thick] (WSpec) edge[very thick, out=180.5,in=145.5,arrow, shorten >=0.1cm] (Wtime)  node[black, yshift=0.25cm, xshift=0.125cm]{${X}$};
+\draw [ultra thick] (Wtime) edge[out=80,in=135.5,arrow, shorten >=0.1cm] (GWTwo) node[black, yshift=-0.25cm, xshift=0.125cm]{$\widetilde{x}$};
+\draw [ultra thick] (GWTwo) edge[out=180,in=45,arrow, shorten >=0.1cm] (Wtime);
+\draw [arrow, thick, shorten >=0.1cm, dashed] (XSpec) to (WSpec);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [ultra thick] (Xtime) edge[out=202.5,in=195.5,arrow, shorten >=0.1cm] (XSpec) node[black, yshift=-0.275cm, xshift=0cm]{$y$};
+\draw [ultra thick] (XSpec) edge[out=-45.5,in=45,arrow, shorten >=0.1cm] (Xtime) node[black, yshift=0.125cm, xshift=0.3cm]{$Y$};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node [rotate = -10] (stftdom) at ($(A) + (4.5,-0.6)$) {STFT-Spectrograms};
+\node [rotate = -10] (timedom) at ($(A) + (2,-4.2)$) {Time-domain signals};
+%%%%%%%%%%%%%%%%%%%%%%55
+\node (stftY) at ($(A) + (5,-3)$) {iSTFT};
+\node (istftY) at ($(A) + (2.9,-3.25)$) {STFT};
+%%%%%%%
+\node (stftX) at ($(A) + (0.75,-1.6)$) {STFT};
+\node (istftX) at ($(A) + (1.25,-2.05)$) {iSTFT};
+\end{tikzpicture}

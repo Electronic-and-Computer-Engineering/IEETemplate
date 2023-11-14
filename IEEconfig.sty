@@ -1,0 +1,387 @@
+%%%%% Configuration Package for the ThesisTemplate ECE / ECM %%%%%%
+%
+% Created by Mayer Florian October/2016
+% v1.0
+
+%======= DocumentClass ===========%
+\documentclass[11pt,\Style]{book} %Extarticle supports more FontSizes
+
+%========= ADD Latex PACKAGES =========%
+\usepackage[%
+headtopline,plainheadtopline,% activate all lines (header and footer)
+headsepline,plainheadsepline,%
+footsepline,plainfootsepline,%
+footbotline,plainfootbotline% auto update \..mark
+]{scrlayer-scrpage}% (KOMA)
+
+%\usepackage[utf8]{inputenc} %to allow vowel mutations
+\usepackage{courier}
+\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+\usepackage[T1]{fontenc}
+\usepackage{tikz} % Schematic creator with TikZ in LaTex
+\usepackage{layout, geometry, titletoc} %geometry
+\usepackage{titlesec}
+\usepackage{color, xcolor,colortbl}
+\usepackage{graphicx,rotating}
+\usepackage{nameref}
+
+\usepackage{ifpdf}
+\ifpdf
+\usepackage{epstopdf}
+\fi
+
+\usepackage{lmodern}
+\usepackage[titles]{tocloft}
+\usepackage{blindtext}
+\usepackage{anyfontsize}
+\usepackage{setspace,varwidth}
+\usepackage{ifthen}
+\usepackage{multicol,multirow}
+\usepackage{makecell}
+\usepackage{shadowtext}
+\usepackage{shadow}
+\usepackage{contour}
+\usepackage{hyphenat} %%Prevent hyphenates if wanted
+
+\usepackage[final]{listings}% program code listings
+
+\usepackage{amssymb}
+\usepackage{emptypage}
+\usepackage{glossaries}
+\usepackage{appendix}
+\usepackage{mdframed}
+\usepackage{etoolbox}
+\usepackage{chngcntr}
+\usepackage{beramono} 
+\usepackage{changepage}
+
+\usepackage{textcomp}
+\usepackage[european,RPvoltages]{circuitikz}
+%\usepackage{footmisc}% customize footnotes
+\usepackage[%
+% allow line break in links
+colorlinks=true,% if false: framed link
+linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,%
+menucolor=black,urlcolor=black]{hyperref}% hyperlinks for references
+
+\ifthenelse{\equal{\german}{true}}
+{
+	\usepackage[ngerman]{babel}
+	\renewcommand{\lstlistlistingname}{Programmcode}
+}
+{
+	\usepackage[american]{babel}
+}
+\usepackage{accsupp}
+\newcommand{\noncopynumber}[1]{%
+	\BeginAccSupp{method=escape,ActualText={}}%
+	#1%
+	\EndAccSupp{}%
+}
+%========= ADD TikZ PACKAGES =========%
+\usetikzlibrary{matrix,calc,positioning,arrows,shapes}
+\usetikzlibrary{decorations.pathreplacing}
+
+\ifthenelse{\equal{\Style}{\Book}}
+{
+	\geometry{a4paper,twoside,%
+		%textheight=205mm, %246mm,%
+		textwidth=165mm,%
+		top = 3cm,
+		bottom = 4cm,
+		heightrounded=false,% round textheight to multiple of lines (avoids overfull vboxes)
+		ignoreall=true,% do not include header, footer, and margins in calculations
+		marginparsep=5pt,% marginpar only used for signs (centered), thus only small sep. needed
+		marginparwidth=10mm,% prevent margin notes to be out of page
+		hmarginratio=1:2,
+		voffset = 2.25mm,
+		%headheight = 16mm,
+		headsep = 9mm,
+		footskip = 13mm
+	}
+}
+{
+	\geometry{a4paper,%
+	%textheight=205mm, %246mm,%
+	textwidth=165mm,%
+	top = 3cm,
+	bottom = 4.25cm,
+	left = 2.25cm,
+	heightrounded=false,% round textheight to multiple of lines (avoids overfull vboxes)
+	ignoreall=true,% do not include header, footer, and margins in calculations
+	marginparsep=0pt,% marginpar only used for signs (centered), thus only small sep. needed
+	marginparwidth=0mm,% prevent margin notes to be out of page
+	hmarginratio=1:2,
+	voffset = 2.25mm,
+	%headheight = 16mm,
+	headsep = 9mm,
+	footskip = 13mm
+	}
+}
+
+%%%%%% Correct Even and Odd Pages %%%%%
+\let\tmp\oddsidemargin
+\let\oddsidemargin\evensidemargin
+\let\evensidemargin\tmp
+\reversemarginpar
+
+\linespread{1.4}
+%======= DEFINE COLORS ===========%
+\definecolor{DENcol}{RGB}{35,171,196} % Department Colour
+\definecolor{DENcolDark}{RGB}{28,136,156} % Department DarkColour
+\definecolor{commentsColor}{rgb}{0.497495, 0.497587, 0.497464}
+\definecolor{keywordsColor}{RGB}{35,171,196}
+\definecolor{stringColor}{rgb}{0.558215, 0.000000, 0.135316}
+
+\definecolor{mybluei}{RGB}{0,173,239}
+\definecolor{myblueii}{RGB}{63,200,244}
+\definecolor{myblueiii}{RGB}{199,234,253}
+
+%======= Re-Define Essential Commands and store old ones ======%
+\newcommand{\ChapterFont}{qag}
+\ifthenelse{\equal{\FancyFactor}{\FlowStyle}}
+{
+	\newcommand{\WorkingFont}{\sfdefault}
+}
+{
+	\newcommand{\WorkingFont}{\rmdefault}
+}
+\renewcommand{\familydefault}{\WorkingFont}
+\normalfont
+
+%======= Set Depths of TOC / TOF / TOL =======%
+\renewcommand{\cftchapfont}{\bf\large\fontfamily{\sfdefault}\selectfont}
+\renewcommand{\cftpartfont}{\bf\large\fontfamily{\sfdefault}\selectfont}
+
+%====== Usefull Additional Commands =======%
+\newcommand{\ie}{i.\,e.}
+\newcommand{\Ie}{I.\,e.}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\Eg}{E.\,g.} 
+
+%====== Heading Commands =======%
+\renewcommand*\chaptermark[1]{\markleft{\thechapter~#1}}
+\renewcommand*\sectionmark[1]{\markright{\thesection~#1}}
+
+\ihead[]{}
+\ohead[\ShortTitle]{\footnotesize\headmark}%
+
+
+\ifthenelse{\equal{\Style}{\Book}}
+{
+	\ofoot[\ifthenelse{\equal{\thepage}{}}{\pagemark}{--~~\pagemark~~--}]{\ifthenelse{\equal{\thepage}{}}{\pagemark}{--~~\pagemark~~--}}%
+	\cfoot[]{}%
+}
+{
+	\cfoot[\ifthenelse{\equal{\thepage}{}}{\pagemark}{--~~\pagemark~~--}]{\ifthenelse{\equal{\thepage}{}}{\pagemark}{--~~\pagemark~~--}}%
+	\ohead[\ShortTitle \hfill]{\ShortTitle \hfill \footnotesize\headmark}%
+	\ofoot[]{}%
+}
+
+%============== Chapter / Section / Subsection Style ==== %
+\newcommand{\resumecontentsFlow}{
+	\ifthenelse{\equal{\FancyFactor}{\FlowStyle}}
+	{
+		\resumecontents
+	}
+	{
+	}
+}
+\newcommand{\stopcontentsFlow}{
+	\ifthenelse{\equal{\FancyFactor}{\FlowStyle}}
+	{
+		\stopcontents
+	}
+	{
+	}
+}
+
+
+\titleformat{\chapter}[display]
+{\sffamily\bfseries\fontsize{22}{22}\selectfont}%\
+{
+	\begin{tikzpicture}[overlay]
+		\node (CoolTitle) at (11.75,1.75) [opacity=0.325]{\includegraphics[scale=0.85]{temp_graphics/chapterBacking.eps}};
+		\node (titleNumber) at ($(CoolTitle)+(3,0)$) {\textcolor{black!80}{\fontfamily{\ChapterFont}\bfseries\Large\fontsize{80}{80}\selectfont\thechapter}};
+	\end{tikzpicture}
+}
+{0.05em}%
+{\vspace{0.25ex}\filleft}%
+%
+\titleformat{\section}{\Large \bfseries \sffamily}{\thesection}{1 em}{}
+\titleformat{\subsection}{\large \bf \sffamily}{\thesubsection}{1 em}{}
+\titleformat{\subsubsection}{\large \bf \sffamily}{\thesubsubsection}{1 em}{}
+
+\newcommand\partnumfont{% font specification for the number
+	\fontsize{200}{75}\color{DENcolDark!40}\selectfont\sffamily%
+}
+
+\newcommand\partnamefont{% font specification for the name "PART"
+	\fontsize{45}{45}\color{DENcolDark!40}\selectfont\sffamily 
+}
+
+\titleformat{\part}[display]
+{\sffamily\bfseries\fontsize{35}{35}\selectfont\color{black!75}\thispagestyle{empty}
+}%\
+{	
+	\ifthenelse{\equal{\FancyFactor}{\FlowStyle}}
+	{
+	\begin{tikzpicture}[overlay]
+		\node (PartBacking) at (current page.south west) [rectangle,minimum width=40cm, minimum height=40cm, fill=DENcol!10]{};
+		\node [rectangle, text width= 10cm, align = right] (titleNumber) at ($(PartBacking)+(12.125,3.5)$) {\partnumfont\thepart};
+		\node (titleName) at ($(titleNumber)+(2.25,3.5)$) {\partnamefont PART};	
+		\node [rounded corners=10pt, fill = white, text opacity=1, fill opacity=0.5] (miniTOC) at (9.25,-11) {
+			\startcontents
+			\stopcontents
+			\begin{minipage}{14cm}		
+				\singlespacing\thispagestyle{empty}\fontsize{12}{12}\printcontents{}{0}[1]{}
+			\end{minipage}};	
+	\end{tikzpicture}
+	}
+	{
+	\begin{tikzpicture}[overlay]
+		\node (PartBacking) at (current page.south west) [rectangle,minimum width=40cm, minimum height=40cm, fill=DENcol!10]{};
+		\node [rectangle, text width= 10cm, align = right] (titleNumber) at ($(PartBacking)+(12.125,3.5)$) {\partnumfont\thepart};
+		\node (titleName) at ($(titleNumber)+(2.25,3.5)$) {\partnamefont PART};	
+	\end{tikzpicture}
+	}{}
+}
+{0.05em}%
+{\vspace{0.25ex}\filleft}
+
+%%%%% TOC Costumizations %%%%%%
+\contentsmargin{0.4cm} % Removes the default right margin
+
+%------------------------------------------------
+
+% Styling of numbered parts in the table of contents
+\newcommand{\tocentrypartnumbered}[1]{%
+	\setlength\fboxsep{0pt}% Remove box padding
+	\contentslabel[%
+	% Part number box
+	\colorbox{DENcol!10}{% Background color
+		\strut\parbox[c][.7cm]{1.1cm}{% Box size
+			\color{DENcol!70}\Large\sffamily\bfseries\centering\thecontentslabel% Part number
+		}%
+	}%
+	\hspace{4pt}%
+	% Part title box
+	\colorbox{DENcol!10}{% Background color
+		\strut\parbox[c][.7cm]{\linewidth-1.25cm}{% Box size
+			\centering\Large\sffamily #1% Part title
+		}%
+	}%
+	]{1.25cm}
+}
+
+% Styling of unnumbered parts in the table of contents
+\newcommand{\tocentrypartunnumbered}[1]{%
+	\setlength\fboxsep{0pt}% Remove box padding
+	\contentslabel[%
+	% Part title box
+	\colorbox{DENcol!10}{% Background color
+		\strut\parbox[c][0.7cm]{\linewidth}{% Box size
+			\centering\LARGE\sffamily #1 % Part title
+		}%
+	}%
+	]{1.25cm}
+}
+
+\titlecontents{part} % Section type being modified
+[1.25cm] % Left indentation
+{\addvspace{0pt}\Large\sffamily\bfseries\hypersetup{linkcolor=black}} % Before code
+{\tocentrypartnumbered} % Formatting of numbered sections of this type
+{\tocentrypartunnumbered} % Formatting of numberless sections of this type
+{} % Formatting of the filler to the right of the heading and the page number
+[] % After code
+
+%------------------------------------------------
+
+\titlecontents{chapter} % Section type being modified
+[0.9cm] % Left indentation
+{\addvspace{9pt}\Large\sffamily\bfseries\hypersetup{linkcolor=DENcolDark!90}} % Before code
+{\bfseries\color{DENcol}\contentslabel[\Large\thecontentslabel]{0.85cm}} % Formatting of numbered sections of this type
+{} % Formatting of numberless sections of this type
+{\color{DENcol!75}\normalsize\;\titlerule*[8.5pt]{.}\;\color{DENcol}\thecontentspage\hspace{-4.2mm}} % Formatting of the filler to the right of the heading and the page number
+[] % After code
+
+%------------------------------------------------
+
+% code listings
+\newcommand\realnumberstyle[1]{}
+
+\makeatletter
+\newcommand{\zebra}[3]{%
+	%{\realnumberstyle{#3}}%
+	\begingroup
+	\lst@basicstyle
+	\ifodd\value{lstnumber}%
+	\color{#1}%
+	\else
+	\color{#2}%
+	\fi
+	\ifthenelse{\value{lstnumber}<10}
+	{
+		\rlap{\hspace{5mm}%
+			\color@block{\linewidth}{\ht\strutbox}{\dp\strutbox}}%
+	}
+	{
+		\rlap{\hspace{6.5mm}%
+			\color@block{\linewidth}{\ht\strutbox}{\dp\strutbox}}%
+	}
+	\endgroup
+}
+\makeatother
+
+\lstloadlanguages{Bash,VHDL,Matlab,[ANSI]C,Java,[LaTeX]TeX}
+
+\lstset{
+	frame=top,frame=bottom,
+	basicstyle=\fontsize{9}{9}\ttfamily, %fontsize{8}{8}\normalfont,    % the size of the fonts that are used for the code
+	stepnumber=1,                           % the step between two line-numbers. If it is 1 each line will be numbered
+	numbersep=13pt,                         % how far the line-numbers are from the code
+	tabsize=3,                              % tab size in blank spaces
+	extendedchars=true,                     %
+	breaklines=true,                        % sets automatic line breaking
+	captionpos=t,                           % sets the caption-position to top
+	columns=fullflexible,
+	mathescape= false,
+	numberstyle=\fontsize{7}{7}\ttfamily\zebra{black!10}{black!2}{10}\noncopynumber,
+	numbers = left, 
+	keywordstyle=\color{keywordsColor}\bfseries,
+	stringstyle=\color{stringColor}\ttfamily, % Farbe der String
+	commentstyle=\color{commentsColor}\textit,
+	showspaces=false,           % Leerzeichen anzeigen ?
+	showtabs=false,             % Tabs anzeigen ?
+	xleftmargin=20pt,
+	framexleftmargin=14pt,
+	framexrightmargin=0pt,
+	framexbottommargin=5pt,
+	framextopmargin=5pt,
+	showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
+	linewidth = 160mm
+}
+
+%%%% MDBOX Setup
+\mdfsetup{%
+	middlelinecolor=red,
+	middlelinewidth=2pt,
+	backgroundcolor=black!5,
+	roundcorner=40pt,
+	topline = false,
+	bottomline = false,
+	rightline = false,
+	linecolor = DENcol!45,
+	linewidth = 5pt,
+	rightmargin = 20pt	
+	}
+
+%%%% GET RID OF OVERFULL BOXING WARNINGS %%%%
+%\overfullrule=5pt
+\setlength{\headheight}{1.1\baselineskip}
+\raggedbottom
+
+\newenvironment{customquote}{\begin{adjustwidth}{5mm}{0mm}}{\end{adjustwidth}}
+
+%%%%%%%%%%%%%
+\counterwithout{footnote}{chapter}

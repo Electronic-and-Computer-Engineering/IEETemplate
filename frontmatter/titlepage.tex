@@ -1,0 +1,169 @@
+% titlepage ----> changelog
+%% Author: Mayer Florian (ECE)
+%%
+%% 10.10.16 ---------> Created TitlePage 
+
+\renewcommand{\familydefault}{\sfdefault}
+\normalfont 
+
+%%%%% Now we add YOUR Personal DATA %%%%%
+%%%%% What you enter here, will be written to the variables used within this document !! %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% ACCORDING TO YOUR degree programme and desired language the titlepage should be created automatically %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifthenelse{\equal{\german}{true}}
+{	
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\ECE}} 
+	{		
+		\newcommand{\DocTypeText}{Bachelorarbeit}
+		\newcommand{\OrgaText}{Elektronik und Computer Engineering}
+		\newcommand{\degType}{am Bachelor-Studiengang}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\MEC}} 
+	{		
+		\newcommand{\DocTypeText}{Bachelorarbeit}
+		\newcommand{\OrgaText}{Industrielle Mechatronik}
+		\newcommand{\degType}{am Bachelor-Studiengang}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\ECM}}
+	{
+		\newcommand{\DocTypeText}{Masterarbeit} % Bachelor's Thesis or Mase
+		\newcommand{\OrgaText}{Electronics and Computer Engineering}
+		\newcommand{\degType}{am Master-Studiengang}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\STM}}
+	{
+		\newcommand{\DocTypeText}{Masterarbeit} % Bachelor's Thesis or Mase
+		\newcommand{\OrgaText}{System Test Engineering}
+		\newcommand{\degType}{am Master-Studiengang}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\ECE}}
+	{
+		\newcommand{\DocTypeText}{Laborprotokoll}
+		\newcommand{\OrgaText}{Elektronik und Computer Engineering}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date 	
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\MEC}}
+	{
+		\newcommand{\DocTypeText}{Laborprotokoll}
+		\newcommand{\OrgaText}{Industrielle Mechatronik}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date 	
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\ECM}}
+	{
+		\newcommand{\DocTypeText}{Laborprotokoll} 
+		\newcommand{\OrgaText}{Electronics and Computer Engineering}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date	
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\STM}}
+	{
+		\newcommand{\DocTypeText}{Laborprotokoll} 
+		\newcommand{\OrgaText}{System Test Engineering}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date	
+	}{}
+	
+	\ifthenelse{\equal{\DocType}{\Thesis}}
+	{
+		\newcommand{\ThesisLineOne}{\degType ~\OrgaText}
+		\newcommand{\ThesisLineTwo}{der FH JOANNEUM -- University of Applied Sciences, Austria} 	
+	}{}
+}
+{
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\ECM}}
+	{
+		\newcommand{\DocTypeText}{Master's Thesis} % Bachelor's Thesis or Mase
+		\newcommand{\OrgaText}{Electronics and Computer Engineering}
+		\newcommand{\degType}{at the master's degree programme}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\ECE}}
+	{		
+		\newcommand{\DocTypeText}{Bachelor's Thesis}
+		\newcommand{\OrgaText}{Elektronik und Computer Engineering}
+		\newcommand{\degType}{at the bachelor's degree programme}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\MEC}}
+	{		
+		\newcommand{\DocTypeText}{Bachelor's Thesis}
+		\newcommand{\OrgaText}{Industrielle Mechatronik}
+		\newcommand{\degType}{at the bachelor's degree programme}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Thesis} \AND \equal{\DegProg}{\STM}}
+	{
+		\newcommand{\DocTypeText}{Master's Thesis} % Bachelor's Thesis or Mase
+		\newcommand{\OrgaText}{System Test Engineering}
+		\newcommand{\degType}{at the master's degree programme}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\ECE}}
+	{
+		\newcommand{\DocTypeText}{Report}
+		\newcommand{\OrgaText}{Elektronik und Computer Engineering}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\MEC}}
+	{
+		\newcommand{\DocTypeText}{Report}
+		\newcommand{\OrgaText}{Industrielle Mechatronik}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\ECM}}
+	{
+		\newcommand{\DocTypeText}{Report}
+		\newcommand{\OrgaText}{Electronics and Computer Engineering}
+		\newcommand{\ThesisDate}{Kapfenberg, \today} %Place and the generated date
+	}{}
+	\ifthenelse{\equal{\DocType}{\Report} \AND \equal{\DegProg}{\STM}}
+	{
+		\newcommand{\DocTypeText}{Report} 
+		\newcommand{\OrgaText}{System Test Engineering}
+		\newcommand{\ThesisDate}{Graz, \today} %Place and the generated date	
+	}{}
+		\ifthenelse{\equal{\DocType}{\Thesis}}
+	{
+		\newcommand{\ThesisLineOne}{\degType ~\OrgaText}
+		\newcommand{\ThesisLineTwo}{of the FH JOANNEUM -- University of Applied Sciences, Austria} 	
+	}{}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifthenelse{\equal{\coloredTitlePage}{true}}
+{
+	\newcommand{\bcol}{DENcol}
+	\newcommand{\tcol}{white}
+}{
+	\newcommand{\bcol}{white}
+	\newcommand{\tcol}{black}
+}
+
+\thispagestyle{empty}
+%
+%====== Create Sizes For Title what so ever ====== %
+\newcommand{\MainTitlesize}{\bf\fontsize{24}{24}\selectfont}
+\newcommand{\SubTitlesize}{\bf\fontsize{16}{16}\selectfont}
+\newcommand{\Namesize}{\bf\fontsize{14}{14}\selectfont}
+%
+
+\ifthenelse{\equal{\DocType}{\Report}}
+{
+	\input{frontmatter/titlepage_report}
+}
+{
+	\input{frontmatter/titlepage_thesis}
+}
+\renewcommand{\familydefault}{\WorkingFont}
+\normalfont
+
+\ifthenelse{\equal{\Style}{\Book}}
+{
+	\newpage\null\thispagestyle{empty}\newpage
+}
+{
+}

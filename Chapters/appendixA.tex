@@ -1,0 +1,114 @@
+	
+	\chapter{Miscellaneous}
+	\section{Some Math}
+	%\renewcommand{\thepage}{}
+	Again, we present you a small mathematical example. Get familiar with this syntax in order to create your own formulas\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Mathematics}}.
+	\begin{equation}
+	\varpi_q(k,l)=\begin{cases}
+	&1\quad \quad G_q(k,l)>\rho_{\text{th}}\\
+	&0\quad \quad \text{otherwise}\\
+	\end{cases}
+	\end{equation}
+	with $\rho_{\text{th}}$ defined as a constant threshold. The remixing error spreading is performed as follows:
+	\begin{eqnarray}
+	\hat{X}^{(i+1)}_q(k,l)&=&{\varpi}_q(k,l)\left(\tilde{{X}}^{(i)}_q(k,l)+\frac{E^{(i)}(k,l)}{\sum_{q=1}^Q{{\varpi}_q(k,l)}}\right)\nonumber\\
+	\tilde{\mathbf{X}}^{(i)}&=&\mathcal{G}(\hat{X}_q^{(i)}),
+	\end{eqnarray}
+	where $\sum_{q=1}^Q{{\varpi}_q(k,l)}$ accounts for the overal contributions of sources in time frequency error distribution and the remixing error $E^{(i)}(k,l)$ is defined as 
+	\begin{equation}
+	E^{(i)}(k,l)=Y(k,l)-\sum_{q=1}^{Q}{\hat{X}_q(k,l)}.
+	\end{equation}
+	
+	\begin{mdframed}
+		\begin{lstlisting}[language = TeX, caption={The math example}, linewidth=150mm]
+		\begin{equation}
+			\varpi_q(k,l)=\begin{cases}
+			&1\quad \quad G_q(k,l)>\rho_{\text{th}}\\
+			&0\quad \quad \text{otherwise}\\
+			\end{cases}
+		\end{equation}
+		with $\rho_{\text{th}}$ defined as a constant threshold. The remixing error spreading is performed as follows:
+		\begin{eqnarray}
+			\hat{X}^{(i+1)}_q(k,l)&=&{\varpi}_q(k,l)\left(\tilde{{X}}^{(i)}_q(k,l)+\frac{E^{(i)}(k,l)}{\sum_{q=1}^Q{{\varpi}_q(k,l)}}\right)\nonumber\\
+			\tilde{\mathbf{X}}^{(i)}&=&\mathcal{G}(\hat{X}_q^{(i)}),
+		\end{eqnarray}
+		where $\sum_{q=1}^Q{{\varpi}_q(k,l)}$ accounts for the overal contributions of sources in time frequency error distribution and the remixing error $E^{(i)}(k,l)$ is defined as 
+		\begin{equation}
+			E^{(i)}(k,l)=Y(k,l)-\sum_{q=1}^{Q}{\hat{X}_q(k,l)}.
+		\end{equation}
+		\end{lstlisting}
+		By adding a label to your equation, you will be able to refer to the equation within the text!
+	\end{mdframed}
+
+\section{Program code / listing}
+Three types of source codes are supported: code snippets, code segments, and
+listings of stand alone files. Snippets are placed inside paragraphs and the others as
+separate paragraphs the difference is the same as between text style and display
+style formulas\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}}. In the following, we will give you a short introduction on all three code listing types.
+
+\subsection{individual added program code}
+\begin{lstlisting}[language = C,caption = {Single code}]
+#include <stdio.h>
+#define N 10
+
+int main()
+{
+int i;
+
+puts("Hello world!");
+
+for (i = 0; i < N; i++)
+{
+	puts("LaTeX is also great for programmers!");
+}
+
+return 0;
+}
+\end{lstlisting}
+
+\begin{mdframed}
+	\begin{lstlisting}[language = Tex, caption = {Example of \emph{Single code}},linewidth= 150mm]
+	\begin{lstlisting}[caption = {Single code}]
+	#include <stdio.h>
+	#define N 10
+	
+	int main()
+	{
+	int i;
+	
+	puts("Hello world!");
+	
+	for (i = 0; i < N; i++)
+	{
+	puts("LaTeX is also great for programmers!");
+	}
+	
+	return 0;
+	}	
+	\end {lstlisting}
+	\end{lstlisting}
+\end{mdframed}
+
+\subsection{Add specific code file}
+
+\lstinputlisting[language=C, caption = {Same code but now we added the code file instead of copying the code into latex}]{code/test.c}
+
+\begin{mdframed}
+	\begin{lstlisting}[language = Tex, caption = {Example of \emph{Adding specific code file}}]
+		
+		\lstinputlisting[language=C, caption = {Same code but now we added the code file instead of copying the code into latex}]{code/test.c}
+		
+	\end{lstlisting}
+\end{mdframed}
+
+\subsection{Scope on specific code file}
+
+\lstinputlisting[language=C, firstline=6, lastline=13, caption = {Scope on specific code file}]{code/test.c}
+
+\begin{mdframed}
+	\begin{lstlisting}[language = Tex, caption = {Example of \emph{Scope on specific code file}}]
+	
+	\lstinputlisting[language=C, firstline=6, lastline=13, caption = {Specific scope on code file}]{code/test.c}
+	
+	\end{lstlisting}
+\end{mdframed}

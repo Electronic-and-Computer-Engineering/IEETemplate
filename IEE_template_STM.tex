@@ -1,0 +1,71 @@
+% Main ThesisTemplate ECE / AEE %
+%
+% Created by Mayer Florian October/2016
+% v1.0
+%
+% October 2016: All packages are running 
+% November 2017: Added more features: Bash-Code, corrected titlepage, listings, added ECM and Company Mode
+% January 2020: More detailed options for titlepage, renewed design
+% November 2020: Added Report-Titlepage and other degree programs, added some fixes
+
+\input{IEE_types.sty}
+%%%%% SOME OPTIONS %%%%% 
+\newcommand{\german}{false} % germanTrue or false --> Switch between german and english headers / titlepage
+\newcommand{\coloredTitlePage}{false} %false Switch between colored and BW titlepage
+\newcommand{\company}{false}
+\newcommand{\DocType}{\Thesis} %\Thesis \Report
+\newcommand{\DegProg}{\STM}	%\ECE \ECM \STM \MEC
+\newcommand{\Style}{\PDF}	%\PDF \Book
+\newcommand{\FancyFactor}{\normalStyle}	%EasterEgg
+%%%%% Required Settings for the template %%%%%
+\input{IEEconfig.sty}
+
+\makeglossaries
+
+\begin{document}
+%%%% Now we include the glossaries %%%%	
+\input{frontmatter/glossaries}
+% in order to compile your glossaries you need to call \makeglossaries in your compiling-chain as well
+%%%%%%%%%%%%	
+
+%frontmatter inluding: titlepage, abstract, acknowledgments, declaration, toc, lof, lot
+\frontmatter
+\renewcommand{\thepage}{\Roman{page}}
+
+%%%% Modify your titlepage by configuring "frontmatter/tpThesis.tex" or "frontmatter/tpReport.tex"
+%%% BEGIN FRONTMATTER
+\input{frontmatter/loadFrontmatter.tex}
+%%% END FRONTMATTER
+%By commenting the elements below, you directly deactivate the use of each of the elements as well
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings
+\printglossary
+
+\mainmatter %including: Parts, chapters, sections, appendicies
+\renewcommand{\thepage}{\arabic{page}}
+
+
+\input{Chapters/Introduction.tex}
+\input{Chapters/Method.tex}
+\input{Chapters/Results.tex}
+\input{Chapters/Discussion.tex}
+
+%%%%  If necessary Appendicies %%%%%%%%%
+
+\begin{appendices} % Put Appendicies here !! 
+	\input{Chapters/appendixA.tex}
+	\input{Chapters/appendixB.tex}
+\end{appendices} 
+
+\ifthenelse{\equal{\german}{true}}
+{
+	\bibliographystyle{deIEEEtran}
+}
+{
+	\bibliographystyle{IEEEtran}
+}
+	\bibliography{bib/ECE_tempBib}
+
+\end{document}

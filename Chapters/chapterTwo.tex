@@ -1,0 +1,117 @@
+\chapter{Draw graphics using TikZ \& other fancy stuff}
+
+TikZ and PGF are TeX packages for creating graphics programmatically. TikZ is build on top of PGF and allows you to create sophisticated graphics in a rather intuitive and easy manner. It also could be necessary to create diagrams or graphics that should change according to variables or differing values. The resulting figures are vector graphic and can be used in different documents as well.
+
+\section{TikZ Example One}
+
+%%%%% FIGURE 3.7 %%%%%%%%%%%%%
+\begin{figure}[h]
+	\center % 20 587 530 727
+	\footnotesize{\input{figures/figure3_7}}
+	\caption{Spectrogram consistency concept used in Griffin-Lim iterative signal reconstruction. A consistent spectrogram verifies $Y=\mathcal{G}(Y)$ while for an inconsistent spectrogram $\widetilde{X}=\mathcal{G}(X)$ leading to $\mathcal{I}({X})\neq{0}$.}\label{figExOne}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{mdframed}
+	\lstinputlisting[language = Tex, caption = TikZ Example One, linewidth = 150mm]{figures/figure3_7.tex}
+\end{mdframed}
+
+
+\section{TikZ Example Two}
+%%%%% FIGURE 3.8 %%%%%%%%%%%%%
+\begin{figure}[h]
+	\center % 20 587 530 727
+	\footnotesize{\input{figures/figure3_8}}
+	\caption{A more complex TikZ example of the \emph{The model of a throttle valve}}\label{figExTwo}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{mdframed}
+	\lstinputlisting[language = Tex, caption = TikZ Example Two, linewidth = 150mm]{figures/figure3_8.tex}
+\end{mdframed}
+
+\section{How to add the blue information boxes?}
+Another way to highlight certain and / or important information is to use blue boxes. You may have seen some of those while skipping through this file.
+
+\begin{mdframed}
+	Here you can add your highlighted text! 	
+\end{mdframed}
+
+\begin{mdframed}
+	\begin{lstlisting}[language = Tex, caption={Example for the highlighted blue box}, linewidth = 150mm]
+	\begin{mdframed}
+		Here you can add your highlighted text! 	
+	\end{mdframed}
+	\end{lstlisting}
+\end{mdframed}
+
+\section{List Structures}
+During your writings convenient and predictable list formatting may be necessary. In this section some structures and their usage are examplified. Lists often appear in documents, especially academic, as their purpose is often to present information in a clear and concise fashion\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/List_Structures}}.
+
+\subsection{\emph{Itemize} create a bullet list}
+
+\begin{itemize}
+	\item First item
+	\item Second item
+	\item Third item
+\end{itemize}
+
+\begin{mdframed}
+	\begin{lstlisting}[language = Tex, caption={Example of an itemized structure}, linewidth = 150mm]
+	\begin{itemize}
+		\item First item
+		\item Second item
+		\item Third item
+	\end{itemize}
+	\end{lstlisting}
+\end{mdframed}
+
+\subsection{\emph{Enumerate} create an enumerated list}
+
+\begin{enumerate}
+	\item First item
+	\item Second item
+	\item Third item
+\end{enumerate}
+
+\begin{mdframed}
+	\begin{lstlisting}[language = Tex, caption={Example of an enumerated structure}, label={lst:TestListings}, linewidth = 150mm]
+	\begin{enumerate}
+		\item First item
+		\item Second item
+		\item Third item
+	\end{enumerate}
+	\end{lstlisting}
+\end{mdframed}
+
+\subsection{Nested lists}
+
+\begin{enumerate}
+	\item The first item
+	\begin{enumerate}
+		\item Nested item 1
+		\item Nested item 2
+	\end{enumerate}
+	\item The second item
+	\item The third etc \ldots
+\end{enumerate}
+
+\begin{mdframed}
+	\begin{lstlisting}[language = Tex, caption={Example of a nested list structure}, linewidth = 150mm]
+	\begin{enumerate}
+		\item The first item
+		\begin{enumerate}
+			\item Nested item 1
+			\item Nested item 2
+		\end{enumerate}
+		\item The second item
+		\item The third etc \ldots
+	\end{enumerate}
+	\end{lstlisting}
+\end{mdframed}
+
+\section{How to deal with something complicated: A table}
+Tables are a common feature in academic writing, often used to summarize research results. Mastering the art of table construction in LaTeX is therefore necessary to produce quality papers and with sufficient practice one can print beautiful tables of any kind. Keeping in mind that LaTeX is not a spreadsheet, it makes sense to use a dedicated tool to build tables and then to export these tables into the document. Basic tables are not too taxing, but anything more advanced can take a fair bit of construction; in these cases, more advanced packages can be very useful. However, first it is important to know the basics\footnote{\url{https://en.wikibooks.org/wiki/LaTeX/Tables}}.
+We will now examplify the creation of one table.
+
+\input{tables/Sample_Table.tex}

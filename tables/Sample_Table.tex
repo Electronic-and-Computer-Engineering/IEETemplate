@@ -1,0 +1,70 @@
+\newcolumntype{M}{>{\centering\arraybackslash}p{0.7cm}}
+
+\begin{table}[ht]
+\centering
+\begin{spacing}{1.1}\caption{Sample Table One}\label{table:tableOne}
+\scriptsize
+\begin{tabular}{|p{3.75cm}|M|M|M|M|M|M|M|M|M|M|}
+\multicolumn{1}{c|}{\bf{}} &
+\multicolumn{5}{c|}{\cellcolor{black!10}\bf{Gross-Pitch Error (GPE) (\%)}}  &
+\multicolumn{5}{c|}{\cellcolor{black!10}\bf{Fine-Pitch Error (FPE) (Hz)}} \\
+\hline
+{GPE/FPE input signal} & \multicolumn{5}{c|}{{SNR (dB)}}  &
+\multicolumn{5}{c|}{{SNR (dB)}} \\ \cline{2-6} \cline{7-11}
+{} & {-6} & {-3} & {0} & {3} & {6} & {-6} & {-3} & {0} & {3} & {6} \\ \hline
+{(UB): est. BM ({PEFAC})} & 26.07 & 23.67 & 21.10 & 19.41 & 18.56 & 0.71 & 0.59
+& 0.75 & 0.63 & 0.69\\ \hline
+{(UB): est. RM ({PEFAC})} & 25.16 & 22.29 & 18.51 & 18.62 & 16.54 & 0.71 & 0.63
+& 0.79 & 0.74 & 0.88\\ \hline \hline
+{est. BM ({PEFAC})} & 48.01 & 39.75 & 32.13 & 28.22 & 23.26 & 1.49 & 0.84
+& 0.86 & 0.92 & 0.69\\ \hline
+{est. BM ({proposed PE})} & 39.37 & 33.77 & 27.96 & 25.05 & 21.90 & 1.25 &
+0.85 & 0.80 & 0.87 & 0.88\\ \hline
+{est. RM ({PEFAC})} & 52.45 & 44.44 & 37.80 & 31.98 & 27.65 & 1.99 &
+1.09 & 1.26 & 0.89 & 0.85\\ \hline
+{est. RM ({proposed PE})} & 46.32 & 39.21 & 32.13 & 28.89 & 25.34 & 1.46 &
+0.97 & 0.94 & 0.83 & 0.69\\ \hline \hline
+{(LB): Mixed signal ({PEFAC})} & 66.2 & 60.55 & 53.98 & 46.52 & 40.33 & 2.96 & 2.42 & 2.22
+& 1.71 & 1.46\\ \hline
+
+\end{tabular}
+\end{spacing}
+\end{table}
+
+\noindent Table~\ref{table:tableOne} shows a ruled result table. On the other hand, Table~\ref{table:tableTWO} shows a more relaxed / unlined table style.
+Both tables can be found in \cite{MayerEtAl2017}.
+
+%%%%%%%%%% OTHER TABLE-TEMPLATE %%%%%%%%%%%%%%%
+
+\begin{table}[ht]
+	\centering
+	\begin{spacing}{1.1} 
+		\caption{Sample Table Two}\label{table:tableTWO}
+		\scriptsize
+		\begin{tabular}{p{3.75cm} M M M M M M M M M M}
+			\Xhline{1\arrayrulewidth}
+			\multicolumn{1}{c}{\bf{}} &
+			\multicolumn{5}{c}{\bf{Gross-Pitch Error (GPE) (\%)}}  &
+			\multicolumn{5}{c}{\bf{Fine-Pitch Error (FPE) (Hz)}} \\
+			%\hline
+			{GPE/FPE input signal} & \multicolumn{5}{c}{{SNR (dB)}}  &
+			\multicolumn{5}{c}{{SNR (dB)}} \\ \hline %\cline{2-6} \cline{7-11}
+			{} & {-6} & {-3} & {0} & {3} & {6} & {-6} & {-3} & {0} & {3} & {6} \\ \hline
+			{(UB): est. BM ({PEFAC})} & 26.07 & 23.67 & 21.10 & 19.41 & 18.56 & 0.71 & 0.59
+			& 0.75 & 0.63 & 0.69\\ %\hline
+			{(UB): est. RM ({PEFAC})} & 25.16 & 22.29 & 18.51 & 18.62 & 16.54 & 0.71 & 0.63
+			& 0.79 & 0.74 & 0.88\\ %\hline \hline
+			{est. BM ({PEFAC})} & 48.01 & 39.75 & 32.13 & 28.22 & 23.26 & 1.49 & 0.84
+			& 0.86 & 0.92 & 0.69\\ %\hline
+			{est. BM ({proposed PE})} & 39.37 & 33.77 & 27.96 & 25.05 & 21.90 & 1.25 &
+			0.85 & 0.80 & 0.87 & 0.88\\ %\hline
+			{est. RM ({PEFAC})} & 52.45 & 44.44 & 37.80 & 31.98 & 27.65 & 1.99 &
+			1.09 & 1.26 & 0.89 & 0.85\\ %\hline
+			{est. RM ({proposed PE})} & 46.32 & 39.21 & 32.13 & 28.89 & 25.34 & 1.46 &
+			0.97 & 0.94 & 0.83 & 0.69\\ %\hline \hline
+			{(LB): Mixed signal ({PEFAC})} & 66.2 & 60.55 & 53.98 & 46.52 & 40.33 & 2.96 & 2.42 & 2.22
+			& 1.71 & 1.46\\ %\hline
+			\Xhline{2\arrayrulewidth}
+		\end{tabular}
+	\end{spacing}
+\end{table}
