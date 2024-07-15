@@ -8,20 +8,33 @@
 % November 2017: Added more features: Bash-Code, corrected titlepage, listings, added ECM and Company Mode
 % January 2020: More detailed options for titlepage, renewed design
 % November 2020: Added Report-Titlepage and other degree programs, added some fixes
+% July 2024:	Fixed Eidestattliche Erklärung, Bixed biblatex to make the headers "changeable"
+
+%NOTE: It is necessary to run BIBER and MakeGlossaries (this is optional)
+%----- To make everything run properly you need to RUN (example), Latex -> Biber -> MakeGlossaries -> PDFLatex
+%--------------------------------------------------------------------------------------------
 
 \input{IEE_types.sty}
-%%%%% SOME OPTIONS %%%%% 
-\newcommand{\german}{true} % germanTrue or false --> Switch between german and english headers / titlepage
+%%%%% SOME BASIC Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcommand{\german}{true} % Change ENV LANG, germanTrue or false
 \newcommand{\coloredTitlePage}{false} %false Switch between colored and BW titlepage
-\newcommand{\company}{false}
-\newcommand{\DocType}{\Thesis} %\Thesis \Report
-\newcommand{\DegProg}{\MEC}	%\ECE \ECM \STM \MEC
-\newcommand{\Style}{\PDF}	%\PDF \Book
-\newcommand{\FancyFactor}{\normalStyle}	%EasterEgg
+\newcommand{\company}{false} %Adds up a company logo to your thesis (temp_graphics/company_logo)
+\newcommand{\DocType}{\Thesis} %\Thesis (May other types will follow)
+\newcommand{\DegProg}{\MEC}	%Chooses your degree programme ---> \ECE \ECM \STM \MEC 
+\newcommand{\Style}{\PDF}	%Single Paged --> \PDF, Double-Paged (ReadyToPrint)  --> \Book
+\newcommand{\FancyFactor}{\normalStyle}	%just and EasterEgg (Command Hidden)
+% -------------------------------------------------------------------------
 %%%%% Required Settings for the template %%%%%
+% ---- Style Sheet
 \input{IEEconfig.sty}
-\input{frontmatter/tpThesis} %HERE you can set titles aso.
-\makeglossaries
+%--------------------
+%%%%% Change text of the TITLEPAGE HERE %%%%%%%%%%%%%%%%%
+\input{frontmatter/tpThesis} %HERE you can set titles, subtitles aso.
+%---------------------------------------------------------
+%%%%% Add BIB File HERE or Modify the existing one %%%%%%%%%
+\addbibresource{bib/ECEtempBib.bib} % NOTE: You may need to run biber once to make the references work
+
+\makeglossaries %If you want to have glossaries this needs to be added
 
 \begin{document}
 %%%% Now we include the glossaries %%%%	
@@ -38,6 +51,7 @@
 \input{frontmatter/loadFrontmatter.tex}
 %%% END FRONTMATTER
 %By commenting the elements below, you directly deactivate the use of each of the elements as well
+% Discuss with your supervisor, you may do not necessarily need all of the following
 \tableofcontents
 \listoffigures
 \listoftables
@@ -47,23 +61,27 @@
 \mainmatter %including: Parts, chapters, sections, appendicies
 \renewcommand{\thepage}{\arabic{page}}
 
+
+%%% Input Chapter tex-Files or change to match your needs
+%---- NOTE: The document and folder structure is up to YOU  
 \input{Chapters/chapterOne.tex}
 \input{Chapters/chapterTwo.tex}
+%----------------------------------
 
-%%%%  If necessary Appendicies %%%%%%%%%
-
+%%%%  If necessary Appendicies are needed %%%%%%%%%
 \begin{appendices} % Put Appendicies here !! 
 	\input{Chapters/appendixA.tex}
 	\input{Chapters/appendixB.tex}
 \end{appendices} 
 
+%%%% Print References %%%%%%%%%%%%%%%%%%%%%%%
+%%%% -----------------------------------
 \ifthenelse{\equal{\german}{true}}
 {
-	\bibliographystyle{deIEEEtran}
+	\printbibliography[title={Quellenverzeichnis}]
 }
 {
-	\bibliographystyle{IEEEtran}
+	\printbibliography[title={References}]
 }
-	\bibliography{bib/ECE_tempBib}
 
 \end{document}
