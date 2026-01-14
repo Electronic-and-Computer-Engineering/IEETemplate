@@ -2,28 +2,29 @@
 %%% BEGIN FRONTMATTER
 \ifthenelse{\equal{\DocType}{\Thesis}}
 {
-	\input{frontmatter/titlepage}
+	\input{frontmatter/titlepage_thesis}
 	\newpage	
-	\ifthenelse{\equal{\german}{true}}
-	{		
+	\ifDE
+			
 		\input{frontmatter/ehrenw_Erklaerung}		
-		\ifthenelse{\equal{\DegProg}{\ECE}}
+		\ifthenelse{\equal{\DegreeProgramme}{\ECE}}
 		{
 			\input{frontmatter/kurzfassung}
 		}{}	
 		\newpage
 		\input{frontmatter/abstract}
-	}
-	{		
+	\else			
 		\input{frontmatter/declaration}
-		\ifthenelse{\equal{\DegProg}{\ECE}}
+		\ifthenelse{\equal{\DegreeProgramme}{\ECE}}
 		{
 			\input{frontmatter/kurzfassung}
 		}{}	
 		\newpage
 		\input{frontmatter/abstract}
-	}
+	\fi
 }
 {
 }
+
+
 %%% END FRONTMATTER

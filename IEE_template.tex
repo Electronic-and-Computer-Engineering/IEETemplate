@@ -1,0 +1,107 @@
+
+% Main ThesisTemplate ECE / AEE %
+%
+% Created by Mayer Florian October/2016
+% v1.0
+%
+% October 2016: All packages are running 
+% November 2017: Added more features: Bash-Code, corrected titlepage, listings, added ECM and Company Mode
+% January 2020: More detailed options for titlepage, renewed design
+% November 2020: Added Report-Titlepage and other degree programs, added some fixes
+% July 2024:	Fixed Eidestattliche Erklärung, Bixed biblatex to make the headers "changeable"
+% October 2025: Reduced Computational effort in order to make compilation easier for Overleaf (If it is still to big for your account preferences there, compile Latex locally)
+
+%NOTE: It is necessary to run BIBER and MakeGlossaries (this is optional)
+%----- To make everything run properly you need to RUN (example), Latex -> Biber -> MakeGlossaries -> PDFLatex
+%--------------------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPORTANT – USER CONFIGURATION REQUIRED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Before compiling this document, you MUST edit the file:
+%
+%   settings_user.tex
+%
+% In that file, you are required to set all personal and formal information,
+% including but not limited to:
+%
+%   - Degree programme
+%   - Thesis title and (optional) subtitle
+%   - Author name
+%   - Supervisor(s)
+%   - Language (German / English)
+%   - Document style (PDF / Book)
+%
+% The template will NOT automatically infer this information.
+% Missing or incorrect settings will result in an invalid or non-compliant
+% title page.
+%
+% Do NOT modify these values in this main file.
+% All user-specific configuration belongs exclusively in settings_user.tex.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{IEE_types.sty} % Geometric an fundamental settings
+% -------------------------------------------------------------------------
+%%%%% Required Settings for the template %%%%%
+% ---- Style Sheet
+\input{frontmatter/settings_user}
+\input{IEEconfig.sty}
+\input{frontmatter/settings_meta}
+%--------------------
+
+%---------------------------------------------------------
+%%%%% Add BIB File HERE or Modify the existing one %%%%%%%%%
+\addbibresource{bib/ECEtempBib.bib} % NOTE: You may need to run biber once to make the references work
+
+\makeglossaries %If you want to have glossaries this needs to be added
+
+\begin{document}
+%%%% Now we include the glossaries %%%%	
+\input{frontmatter/glossaries} % IF NEEDED! ASK YOUR SUPERVISOR !
+% in order to compile your glossaries you need to call \makeglossaries in your compiling-chain as well
+%%%%%%%%%%%%	
+
+%frontmatter inluding: titlepage, abstract, acknowledgments, declaration, toc, lof, lot
+\frontmatter
+\renewcommand{\thepage}{\Roman{page}}
+
+%%%% Modify your titlepage by configuring "frontmatter/tpThesis.tex" or "frontmatter/tpReport.tex"
+%%% BEGIN FRONTMATTER
+\input{frontmatter/loadFrontmatter.tex}
+%%% END FRONTMATTER
+%By commenting the elements below, you directly deactivate the use of each of the elements as well
+% Discuss with your supervisor, you may do not necessarily need all of the following
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings
+\printglossary
+
+\mainmatter %including: Parts, chapters, sections, appendicies
+\renewcommand{\thepage}{\arabic{page}}
+
+%%% Input Chapter tex-Files or change to match your needs
+%---- NOTE: The document and folder structure is up to YOU
+\input{Chapters/chapterOne.tex}
+\input{Chapters/chapterTwo.tex}
+%----------------------------------
+
+%%%%  If necessary Appendicies are needed %%%%%%%%%
+\begin{appendices} % Put Appendicies here !! 
+	\input{Chapters/appendixA.tex}
+	\input{Chapters/appendixB.tex}
+\end{appendices} 
+
+%%%% Print References %%%%%%%%%%%%%%%%%%%%%%%
+%%%% -----------------------------------
+\ifthenelse{\equal{\german}{true}}
+{
+	\printbibliography[title={Quellenverzeichnis}]
+}
+{
+	\printbibliography[title={References}]
+}
+
+\end{document}

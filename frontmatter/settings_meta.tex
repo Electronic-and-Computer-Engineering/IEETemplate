@@ -1,0 +1,106 @@
+% ======================================================================
+% LANGUAGE HANDLING
+% german=true => German
+% german=false => English
+% EEM forces English regardless of user setting
+% ======================================================================
+
+\newif\ifDE
+\ifthenelse{\equal{\german}{true}}{\DEtrue}{\DEfalse}
+\ifthenelse{\equal{\DegreeProgramme}{\EEM}}{\DEfalse}{} % override if EEM
+
+
+% ======================================================================
+% DOCUMENT TYPE TEXT
+% Display only – no functional logic
+% ======================================================================
+
+\ifDE
+    \ifthenelse{\equal{\DocType}{\Thesis}}{\newcommand{\DocTypeText}{Bachelorarbeit}}{}
+    \ifthenelse{\equal{\DocType}{\Report}}{\newcommand{\DocTypeText}{Laborprotokoll}}{}
+\else
+    \ifthenelse{\equal{\DocType}{\Thesis}}{\newcommand{\DocTypeText}{Bachelor's Thesis}}{}
+    \ifthenelse{\equal{\DocType}{\Report}}{\newcommand{\DocTypeText}{Report}}{}
+\fi
+
+
+% ======================================================================
+% DEGREE PROGRAMME NAMES  (never translated!)
+% ======================================================================
+
+\ifthenelse{\equal{\DegreeProgramme}{\ECE}}{
+    \newcommand{\DegreeText}{Elektronik und Computer Engineering}
+    \newcommand{\DegreeLevel}{Bachelor}
+    }{}
+\ifthenelse{\equal{\DegreeProgramme}{\MEC}}{
+    \newcommand{\DegreeText}{Industrielle Mechatronik}
+    \newcommand{\DegreeLevel}{Bachelor}
+    }{}
+\ifthenelse{\equal{\DegreeProgramme}{\EEM}}{
+    \newcommand{\DegreeText}{Electronic Engineering}
+    \newcommand{\DegreeLevel}{Master}
+    }{}
+
+
+% ======================================================================
+% DEGREE LEVEL TEXT (Bachelor / Master)
+% controlled by \DegreeLevel in settings_user.tex
+% ======================================================================
+
+\ifDE
+    \ifthenelse{\equal{\DegreeLevel}{Bachelor}}{\newcommand{\DegreeLevelText}{am Bachelor-Studiengang}}{}
+    \ifthenelse{\equal{\DegreeLevel}{Master}}{\newcommand{\DegreeLevelText}{am Master-Studiengang}}{}
+\else
+    \ifthenelse{\equal{\DegreeLevel}{Bachelor}}{\newcommand{\DegreeLevelText}{at the bachelor's degree programme}}{}
+    \ifthenelse{\equal{\DegreeLevel}{Master}}{\newcommand{\DegreeLevelText}{at the master's degree programme}}{}
+\fi
+
+\ifDE
+    \newcommand{\LabelSupervision}{Betreuer}
+    \newcommand{\LabelCoSupervision}{Co-Betreuer}
+\else
+    \newcommand{\LabelSupervision}{Supervision}
+    \newcommand{\LabelCoSupervision}{Co-Supervision}
+\fi
+
+
+% ======================================================================
+% FINAL EXPANDED TITLEPAGE STRING
+% German and English versions build themselves automatically
+% ======================================================================
+
+\ifDE
+    \newcommand{\DegreeLong}{\DegreeLevelText\ \DegreeText}
+    \newcommand{\InstitutionLine}{der FH JOANNEUM – University of Applied Sciences, Austria}
+\else
+    \newcommand{\DegreeLong}{\DegreeLevelText\ \DegreeText}
+    \newcommand{\InstitutionLine}{of the FH JOANNEUM – University of Applied Sciences, Austria}
+\fi
+
+
+% ======================================================================
+% LOCATION (Depends ONLY on programme)
+% ======================================================================
+
+\ifthenelse{\equal{\DegreeProgramme}{\ECE}}{\newcommand{\ThesisPlace}{Graz}}{}
+\ifthenelse{\equal{\DegreeProgramme}{\MEC}}{\newcommand{\ThesisPlace}{Kapfenberg}}{}
+\ifthenelse{\equal{\DegreeProgramme}{\EEM}}{\newcommand{\ThesisPlace}{Graz}}{}
+
+
+% ======================================================================
+% LOGO SELECTION
+% logos are defined in settings_user.tex
+% ======================================================================
+
+\ifthenelse{\equal{\DegreeProgramme}{\ECE}}{
+    \newcommand{\DegreeLogo}{temp_graphics/logo_FHJ_ECE_white.eps}
+    \newcommand{\DegreeLogoWidth}{10.5cm}}{}
+\ifthenelse{\equal{\DegreeProgramme}{\MEC}}{
+    \newcommand{\DegreeLogo}{temp_graphics/logo_FHJ_mec_cmyk.eps}
+    \newcommand{\DegreeLogoWidth}{10.5cm}}{}
+\ifthenelse{\equal{\DegreeProgramme}{\EEM}}{
+    \newcommand{\DegreeLogo}{temp_graphics/FHJ-EE_flat.eps}
+    \newcommand{\DegreeLogoWidth}{9cm}}{}
+
+\newcommand{\FontColorNormal}{black} % text color without background
+\newcommand{\FontColorBack}{white}   % text color when background image is used

@@ -1,0 +1,128 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% USER INPUT – TITLEPAGE CONTENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file contains all user-adjustable settings for configuring the title page
+%and global appearance of the thesis document.
+%
+%Only modify values in this file. Do NOT rename commands or change their structure
+%unless you fully understand the template internals.
+
+% ================================
+% GLOBAL SWITCHES
+% ================================
+% These switches control the overall behavior and layout of the document.
+
+% - \german
+%   true  -> German document language
+%   false -> English document language
+
+% - \coloredTitlePage
+%   true  -> Colored title page
+%   false -> Black/white title page (recommended for printing)
+
+% - \UseCompanyLogo
+%   true  -> Adds a company logo to the title page
+%   false -> No company logo
+
+% - \DocType
+%   Currently supported:
+%   \Thesis  -> Thesis document
+%   (Other types may be added in the future)
+
+% - \DegreeProgramme
+%   Select the degree programme:
+%   \ECE -> Electronics and Computer Engineering
+%   \ECM -> Electronic and Computer Systems (example)
+%   \STM -> Smart Technologies and Management (example)
+%   \MEC -> Mechanical Engineering (example)
+
+% - \Style
+%   \PDF  -> Single-page layout (screen/PDF optimized)
+%   \Book -> Double-page layout (print-ready)
+
+% - \FancyFactor
+%   Internal style switch.
+%   Leave unchanged unless explicitly instructed.
+
+\newcommand{\german}{true} % Change ENV LANG, germanTrue or false
+\newcommand{\coloredTitlePage}{false} %false Switch between colored and BW titlepage
+\newcommand{\UseCompanyLogo}{true} %Adds up a company logo to your thesis (temp_graphics/company_logo)
+\newcommand{\DocType}{\Thesis} %\Thesis (May other types will follow)
+\newcommand{\DegreeProgramme}{\EEM}	%Chooses your degree programme ---> \ECE \EEM \MEC 
+\newcommand{\Style}{\PDF}	%Single Paged --> \PDF, Double-Paged (ReadyToPrint)  --> \Book
+\newcommand{\FancyFactor}{false}	%just an EasterEgg (Command Hidden)
+
+% ================================
+% THESIS SETTINGS
+% ================================
+% These fields define the textual content of the title page.
+
+% - \ThesisTitle
+%   Full official title of the thesis.
+
+% - \ThesisSubtitle
+%   Optional subtitle.
+%   Leave empty {} if not required.
+
+% - \ShortTitle
+%   Shortened title used in headers or metadata.
+
+% - \ThesisAuthor
+%   Author name (Forename Surname).
+
+% - \Supervisor
+%   One or more supervisors.
+%   Use \\ to separate multiple names.
+
+% - \CoSupervisor
+%   Optional co-supervisor or company supervisor.
+%   Leave empty if not applicable.
+
+% - \SpecialNote
+%   Optional note shown on the title page.
+%   Leave empty {} to disable.
+
+\newcommand{\ThesisTitle}{Your Thesis Title}
+\newcommand{\ThesisSubtitle}{Optional Subtitle}
+\newcommand{\ShortTitle}{Short Title}
+
+\newcommand{\ThesisAuthor}{Forename Surename}
+
+\newcommand{\Supervisor}{Supervisor 1 \\ Supervisor 2}
+\newcommand{\CoSupervisor}{Co-Supervisor Company}
+
+\newcommand{\SpecialNote}{} % optional Hinweisfeld
+
+% ===== OPTIONAL =====
+% Only relevant if \UseCompanyLogo is set to true.
+
+% - \CompanyLogo
+%   Path to the logo file (EPS format recommended).
+
+% - \CompanyLogoWidth
+%   Width of the logo on the title page (e.g. 9cm).
+
+\newcommand{\CompanyLogo}{temp_graphics/company_logo.eps}
+\newcommand{\CompanyLogoWidth}{9cm}
+
+% Activate Background?
+
+% Controls a background image on the title page.
+
+% - \UseBackground
+%   true  -> Background image enabled
+%   false -> No background image
+
+% - \BackgroundImage
+%   Path to the background graphic (EPS format).
+
+\newcommand{\UseBackground}{true}
+\newcommand{\BackgroundImage}{temp_graphics/bgGraphic.eps}
+
+% - Do not remove or rename any commands.
+% - Do not add LaTeX logic (if/else) here.
+% - Use EPS graphics unless the template explicitly supports other formats.
+% - If compilation fails, revert to default values first.
+
+% This file is designed to be the single point of configuration
+% for title page customization.

@@ -1,108 +1,78 @@
-\ifthenelse{\equal{\coloredTitlePage}{true}}
-{
-	\newcommand{\shadowtitle}{\shadowcolor{black}\shadowoffset{0pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TITLEPAGE TEMPLATE
+% Reads configuration from:
+%   settings_user.tex  (user input)
+%   settings_meta.tex  (automatic logic)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\normalfont 
+
+% ===== TITLEPAGE =====
+\begin{titlepage}
+
+% =============== BACKGROUND VIA TIKZ (RECOMMENDED) ===============
+\ifthenelse{\equal{\UseBackground}{true}}{
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[yshift=-27mm,xshift=0mm] at (current page.center) {
+            \includegraphics[scale = 1.05]{\BackgroundImage}
+        };
+    \end{tikzpicture}
+    \color{\FontColorBack}
+}{
+    \color{\FontColorNormal}
 }
-{
-	\newcommand{\shadowtitle}{\shadowoffset{0pt}}
-}
+  
+% ----- DEGREE LOGO (right aligned) -----
+\begin{picture}(0,0)
+  \ifthenelse{\equal{\DegreeProgramme}{\EEM}}{\put(230,-35)}{\put(190,-45)}
+  %\raggedleft
+  {\includegraphics[width=\DegreeLogoWidth]{\DegreeLogo}}
+\end{picture}
 
-\begin{tikzpicture}[overlay]
+% ----- OPTIONAL COMPANY LOGO (left aligned) -----
+\ifthenelse{\equal{\UseCompanyLogo}{true}}{
+\begin{picture}(0,0)
+  \put(-40,-28){\includegraphics[width=\CompanyLogoWidth]{\CompanyLogo}}
+\end{picture}
+}{}
 
-\ifthenelse{\equal{\company}{true}}
-{
-	\ifthenelse{\equal{\DegProg}{\ECE}}
-	{
-		\node (Logo) at (9cm,-1) [anchor = east] {\includegraphics[scale = 1]{temp_graphics/company_logo.eps}};
-		\node (Logo2) at (17cm,-0.9) [anchor = east] {\includegraphics[scale = 1.1]{temp_graphics/logo_FHJ_ECE_white.eps}};
-	}{}
-	\ifthenelse{\equal{\DegProg}{\MEC}}
-	{
-		\node (Logo) at (9cm,-1) [anchor = east] {\includegraphics[scale = 1]{temp_graphics/company_logo.eps}};
-		\node (Logo2) at (17.5cm,-1.2) [anchor = east] {\includegraphics[scale = 1.2]{temp_graphics/logo_FHJ_mec_cmyk.eps}};
-	}{}
-	\ifthenelse{\equal{\DegProg}{\ECM}}
-	{
-		\node (Logo) at (8cm,-1) [anchor = east] {\includegraphics[scale = 0.9]{temp_graphics/company_logo.eps}};
-		\node (Logo2) at (16cm,-1.2) [anchor = east] {\includegraphics[scale = 0.9]{temp_graphics/ecm_logo_eps.eps}};
-	}{}
-	\ifthenelse{\equal{\DegProg}{\STM}}
-	{
-		\node (Logo) at (8cm,-1) [anchor = east] {\includegraphics[scale = 0.9]{temp_graphics/company_logo.eps}};
-		\node (Logo2) at (16cm,-1.2) [anchor = east] {\includegraphics[scale = 1.3]{temp_graphics/logo_FHJ_stm_rgb.eps}};
-	}{}
-}
-{
-	\ifthenelse{\equal{\DegProg}{\ECE}}
-	{
-		\node (Logo) at (17cm,-0.9) [anchor = east] {\includegraphics[scale = 1.2]{temp_graphics/logo_FHJ_ECE_white.eps}};
-	}{}
-	\ifthenelse{\equal{\DegProg}{\MEC}}
-	{
-		\node (Logo) at (17.5cm,-1.2) [anchor = east] {\includegraphics[scale = 1.3]{temp_graphics/logo_FHJ_mec_cmyk.eps}};
-	}{}
-	\ifthenelse{\equal{\DegProg}{\ECM}}
-	{
-		\node (Logo) at (16cm,-1.2) [anchor = east] {\includegraphics[scale = 1]{temp_graphics/ecm_logo_eps.eps}};
-	}{}
-	\ifthenelse{\equal{\DegProg}{\STM}}
-	{
-		\node (Logo) at (16cm,-1.2) [anchor = east] {\includegraphics[scale = 1.4]{temp_graphics/logo_FHJ_stm_rgb.eps}};
-	}{}
-}
+\vspace*{35mm}
+\raggedleft
 
-%% ===== CREATE background ===== %%
-% Background Box
-\ifthenelse{\equal{\coloredTitlePage}{true}}
-{
-	\node (boxOne)  at (7cm,-12) [minimum width=1.4\paperwidth, minimum height=18cm, inner sep=0pt, opacity = 0.4] {\includegraphics[scale = 1.6]{temp_graphics/Background_Türkis_Startseite.jpg}};
-}
-{
-	\node (boxOne)  at (6.5cm,-12.5) []{};
-}
-\node (ThesisTitle) [color = \tcol, font = \MainTitlesize, align = flush right, anchor = north east] at (16,-4){\ThesisTitle};%
+% ===== THESIS TITLE =====
+{\Huge\textbf{\ThesisTitle}}\\[5pt]
+{\LARGE\ThesisSubtitle}\\[10mm]
 
-\node (ThesisSubtitle) [color = \tcol, font = \SubTitlesize, align = flush right, anchor = north east] at ($(ThesisTitle.south east) + (0,-0.25em)$){\ThesisSubtitle};
+% ===== DOCUMENT TYPE =====
+{\LARGE\textbf{\DocTypeText}}\\[12mm]
 
-\node (ThesisType) [color = \tcol, font = \SubTitlesize, align = flush right, anchor = north east] at ($(ThesisSubtitle.south east) + (0,-3em)$){\DocTypeText};
+% ===== AUTHOR =====
+{\LARGE\textbf{\ThesisAuthor}}\\[12mm]
 
-\ifthenelse{\equal{\german}{true}}
-{
-	\node (AuthName) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(ThesisType.south east) + (0,-2em)$){{\bf{angefertigt von:}} \\ \ThesisAuthor};
-}
-{
-	\node (AuthName) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(ThesisType.south east) + (0,-2em)$){{\bf{written by:}} \\ \ThesisAuthor};
-}
+% ===== STUDY PROGRAMME LINE =====
+{\Large\DegreeLong}\\[5pt]
+{\Large\InstitutionLine}\\[14mm]
 
-\node (Organization) [color = \tcol, font = \Large, align = flush right, anchor = north east] at ($(AuthName.south east) + (0,-3.5em)$){{\ThesisLineOne} \\ \ThesisLineTwo};
+% ===== SUPERVISION =====
+{\LARGE\textbf{\LabelSupervision:}}\\
+\Large\Supervisor\\[5mm]
 
+\ifx\CoSupervisor\empty
+  % nothing printed
+\else
+  \LARGE\textbf{\LabelCoSupervision:}\\
+  \Large\CoSupervisor\\[5mm]
 
+% ===== OPTIONAL NOTE =====
+\ifx\SpecialNote\empty\else
+    {\small\emph{\SpecialNote}}\\[12mm]
+\fi
+\vspace*{-5mm}
+% ===== LOCATION + DATE =====
+{\ThesisPlace, \today}
 
-\ifthenelse{\equal{\german}{true}}
-{
-	\node (Supervisor) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(Organization.south east) + (0,-3em)$){{\bf{unter der Anleitung von:}} \\ \Supervisor};
-}
-{
-	\node (Supervisor) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(Organization.south east) + (0,-3em)$){{\bf{supervised by:}} \\ \Supervisor};
-}
-
-\ifthenelse{\equal{\company}{true}}
-{
-	\ifthenelse{\equal{\german}{true}}
-	{
-		\node (COSupervisor) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(Supervisor.south east) + (0,-3em)$){{\bf{extern Betreut von:}} \\ \CoSupervisor};
-		
-		\node (ThesisDate) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(COSupervisor.south east) + (0,-3em)$){\bf\ThesisDate};
-	}
-	{
-		\node (COSupervisor) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(Supervisor.south east) + (0,-3em)$){{\bf{externally supervised by:}} \\ \CoSupervisor};
-		
-		\node (ThesisDate) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(COSupervisor.south east) + (0,-3em)$){\bf\ThesisDate};
-	}
-}
-{
-		\node (ThesisDate) [color = \tcol, font = \large, align = flush right, anchor = north east] at ($(Supervisor.south east) + (0,-3em)$){\bf\ThesisDate};
-}
-
-	\node (SpecialNote) [color = \tcol, font = \large, align = center, anchor = north east] at ($(ThesisDate.south east) + (0,-3em)$){\begin{varwidth}{14cm} {\SpecialNote} \end{varwidth}};
-
-\end{tikzpicture}	
+\end{titlepage}
+\renewcommand{\familydefault}{\WorkingFont}
+\normalfont
